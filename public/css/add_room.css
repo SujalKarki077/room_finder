@@ -1,0 +1,80 @@
+/* ===========================
+   ADD ROOM PAGE STYLES
+=========================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f4f6f8;
+}
+
+/* Page Container */
+.add-room-container {
+  max-width: 450px;
+  margin: 80px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+.add-room-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+/* Form */
+.add-room-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inputs & Select */
+.add-room-container input,
+.add-room-container select {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* Focus Effect */
+.add-room-container input:focus,
+.add-room-container select:focus {
+  border-color: #007bff;
+}
+
+/* File Input */
+.add-room-container input[type="file"] {
+  padding: 8px;
+  background: #fafafa;
+}
+
+/* Submit Button */
+.add-room-container button {
+  padding: 12px;
+  background: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-room-container button:hover {
+  background: #0056b3;
+}
+
+/* Small Screen */
+@media (max-width: 500px) {
+  .add-room-container {
+    margin: 40px 15px;
+  }
+}

@@ -1,21 +1,42 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include "../config/db.php";
+
+$search = "";
+
+if (isset($_GET['search'])) {
+    $search = mysqli_real_escape_string($conn, $_GET['search']);
+    $sql = "SELECT * FROM rooms
+            WHERE title LIKE '%$search%'
+            OR location LIKE '%$search%'
+            ORDER BY id DESC";
+} else {
+    $sql = "SELECT * FROM rooms ORDER BY id DESC";
+}
+
+$result = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Room Finder</title>
   <link rel="stylesheet" href="/roomfinder/public/css/style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
   <div class="logo">🏠 RoomFinder</div>
   <nav>
-    <a href="#">Home</a>
-    <a href="favorite.php">Favorite</a>
-    <a href="#">Chat</a>
-  </nav>
+  <a href="home.php">Home</a>
+  <a href="favorite.php">Favorite</a>
+
+  <?php if(isset($_SESSION['is_lister']) && $_SESSION['is_lister'] == 1): ?>
+      <a href="add_room.php">Add Room</a>
+      <a href="my_rooms.php">My Rooms</a>
+  <?php endif; ?>
+</nav>
+
 
   <?php if(isset($_SESSION['username'])): ?>
     <span class="user"><?= $_SESSION['username'] ?></span>
@@ -24,52 +45,37 @@
   <?php endif; ?>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-overlay">
     <h1>Room Finder</h1>
 
-    <div class="search-box">
-      <input type="text" placeholder="Search location or area">
-      <button>Search</button>
-    </div>
+    <form method="GET" class="search-box">
+      <input type="text" name="search" placeholder="Search location or area"
+             value="<?= htmlspecialchars($search) ?>">
+      <button type="submit">Search</button>
+    </form>
   </div>
 </section>
 
-<!-- LISTINGS -->
 <section class="section">
-  <h2>Best Rooms for You</h2>
+  <h2>Available Rooms</h2>
 
   <div class="card-grid">
-
-    <!-- CARD -->
-    <div class="card">
-      <img src="image/rooms/room1.jpg">
-      <div class="card-body">
-        <h3>Kos Griya Putri</h3>
-        <p>Rs. 15,000 / month</p>
-        <span class="tag">Girls</span>
+  <?php if(mysqli_num_rows($result) > 0): ?>
+    <?php while($room = mysqli_fetch_assoc($result)): ?>
+      <div class="card">
+        <img src="../uploads/<?= $room['image'] ?>">
+        <div class="card-body">
+          <h3><?= $room['title'] ?></h3>
+          <p><?= $room['location'] ?></p>
+          <p>Rs. <?= $room['price'] ?> / month</p>
+          <span class="tag"><?= $room['room_type'] ?></span>
+        </div>
       </div>
-    </div>
-
-    <div class="card">
-      <img src="image/rooms/room2.jpg">
-      <div class="card-body">
-        <h3>Kos H. Turiman</h3>
-        <p>Rs. 8,500 / month</p>
-        <span class="tag green">Mixed</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="image/rooms/room3.jpg">
-      <div class="card-body">
-        <h3>Kost Mambo</h3>
-        <p>Rs. 7,500 / month</p>
-        <span class="tag">Girls</span>
-      </div>
-    </div>
-
+    <?php endwhile; ?>
+  <?php else: ?>
+    <p>No rooms found</p>
+  <?php endif; ?>
   </div>
 </section>
 

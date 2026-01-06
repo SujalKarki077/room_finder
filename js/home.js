@@ -13,3 +13,13 @@ function logout() {
   fetch("/roomfinder/api/auth/logout.php")
     .then(() => window.location.href = "login.html");
 }
+document.getElementById("searchBtn").addEventListener("click", function () {
+    const searchValue = document.getElementById("searchInput").value.trim();
+
+    if (searchValue !== "") {
+        window.location.href = "home.php?search=" + encodeURIComponent(searchValue);
+    } else {
+        window.location.href = "home.php";
+    }
+});
+
