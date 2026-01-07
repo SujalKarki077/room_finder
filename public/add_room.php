@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['is_lister'] != 1) {
 
 <div class="add-room-container">
   <h2>Add New Room</h2>
-
+ 
   <form method="POST" action="/roomfinder/api/add_room.php" enctype="multipart/form-data">
     <input type="text" name="title" placeholder="Room Title" required>
     <input type="text" name="location" placeholder="Location" required>
@@ -29,7 +29,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['is_lister'] != 1) {
       <option value="Boys">Boys</option>
       <option value="Mixed">Mixed</option>
     </select>
-
+   <textarea name="description" placeholder="Room description"></textarea>
     <input type="file" name="image" required>
     <button type="submit">Add Room</button>
   </form>

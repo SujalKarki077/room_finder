@@ -1,35 +1,39 @@
 <?php
 session_start();
-include_once "../config/db.php";
+include '../config/db.php';
 
-if(!isset($_SESSION['username'])){
-    header("Location: home.php");
-    exit();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: login.php");
+  exit;
 }
 
-$sql = "SELECT * FROM favorites WHERE user_id=".$_SESSION['user_id'];
-$result = mysqli_query($conn, $sql);
+$user_id = $_SESSION['user_id'];
+
+$sql = "
+SELECT rooms.*
+FROM rooms
+JOIN favorites ON rooms.id = favorites.room_id
+WHERE favorites.user_id = ?
+";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Your Favorites</title>
-    <link rel="stylesheet" href="/roomfinder/public/css/style.css">
-</head>
-<body>
-<h1>Your Favorite Rooms</h1>
-<?php
-if(mysqli_num_rows($result) > 0){
-    while($row = mysqli_fetch_assoc($result)){
-        echo "<div class='room'>";
-        echo "<h2>".$row['room_name']."</h2>";
-        echo "<p>".$row['description']."</p>";
-        echo "</div>";
-    }
-}else{
-    echo "<p>No favorites added yet.</p>";
-}
-?>
-</body>
-</html>
+<h2>My Favorite Rooms</h2>
+
+<div class="card-grid">
+<?php while($row = $result->fetch_assoc()): ?>
+  <div class="card">
+    <img src="../uploads/<?= htmlspecialchars($row['image'] ?? 'default.jpg') ?>">
+    <div class="card-body">
+      <h3><?= htmlspecialchars($row['title']) ?></h3>
+      <p><?= htmlspecialchars($row['location']) ?></p>
+      <p>Rs. <?= $row['price'] ?></p>
+
+      <a href="room.php?id=<?= $row['id'] ?>" class="btn">Know More</a>
+    </div>
+  </div>
+<?php endwhile; ?>
+</div>

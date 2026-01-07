@@ -1,6 +1,8 @@
 <?php
 session_start();
 include '../config/db.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 if (!isset($_SESSION['user_id'])) {
     die("Unauthorized");
@@ -11,7 +13,8 @@ $title = $_POST['title'];
 $location = $_POST['location'];
 $price = $_POST['price'];
 $room_type = $_POST['room_type'];
-$description = $_POST['description'];
+$description = $_POST['description'] ?? '';
+
 
 // IMAGE UPLOAD
 $image_name = time() . "_" . $_FILES['image']['name'];
