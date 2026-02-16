@@ -9,11 +9,19 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
 
 $result = mysqli_query($conn, "SELECT * FROM users");
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="css/manage_users.css">
+</head>
+<body>
 
+<div class="admin-container">
 <h2>Manage Users</h2>
-<a href="dashboard.php">⬅ Back</a>
+<a href="dashboard.php" class="back-btn">⬅ Back</a>
 
-<table border="1" cellpadding="10">
+<table class="admin-table">
 <tr>
     <th>Username</th>
     <th>Role</th>
@@ -38,3 +46,7 @@ $result = mysqli_query($conn, "SELECT * FROM users");
 </tr>
 <?php endwhile; ?>
 </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* ===== Manage Rooms Page ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Background */
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 40px;
+}
+
+/* Container */
+.admin-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Title */
+.admin-container h2 {
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    background: #4f46e5;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #3730a3;
+}
+
+/* Table */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Header */
+.admin-table th {
+    background: #4f46e5;
+    color: #ffffff;
+    padding: 14px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Cells */
+.admin-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+/* Row stripes */
+.admin-table tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+/* Hover */
+.admin-table tr:hover {
+    background: #eef2ff;
+}
+
+/* Action links */
+.admin-table a {
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+/* Approve button */
+.admin-table a[href*="approve_room"] {
+    background: #22c55e;
+    color: white;
+}
+
+.admin-table a[href*="approve_room"]:hover {
+    background: #15803d;
+}
+
+/* Delete button */
+.admin-table a[href*="delete_room"] {
+    background: #ef4444;
+    color: white;
+}
+
+.admin-table a[href*="delete_room"]:hover {
+    background: #b91c1c;
+}

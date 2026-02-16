@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $sql);
 <html>
 <head>
   <title>Room Finder</title>
-  <link rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -35,10 +35,12 @@ $result = mysqli_query($conn, $sql);
     <a href="../admin/dashboard.php">Admin Panel</a>
 <?php endif; ?>
 
-  <?php if(isset($_SESSION['is_lister']) && $_SESSION['is_lister'] == 1): ?>
-      <a href="add_room.php">Add Room</a>
-      <a href="my_rooms.php">My Rooms</a>
-  <?php endif; ?>
+<?php if (isset($_SESSION['is_lister']) && $_SESSION['is_lister'] == 1): ?>
+  <a href="add_room.php">Add Room</a>
+  <a href="my_rooms.php">My Rooms</a>
+  <a href="booking_requests.php">Booking Requests</a>
+<?php endif; ?>
+
 </nav>
  
   <?php if(isset($_SESSION['username'])): ?>

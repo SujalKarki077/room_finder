@@ -7,16 +7,22 @@ include '../config/db.php';
 <html>
 <head>
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css">
 </head>
+
 <body>
 
-<h2>Welcome Admin: <?= $_SESSION['username'] ?></h2>
+<div class="admin-dashboard">
 
-<ul>
-    <li><a href="manage_users.php">Manage Users</a></li>
-    <li><a href="manage_rooms.php">Manage Rooms</a></li>
-    <li><a href="../public/logout.php">Logout</a></li>
-</ul>
+    <h2>Welcome Admin: <?= htmlspecialchars($_SESSION['username']) ?></h2>
+
+    <ul>
+        <li><a href="manage_users.php">Manage Users</a></li>
+        <li><a href="manage_rooms.php">Manage Rooms</a></li>
+        <li><a href="../public/logout.php" class="logout">Logout</a></li>
+    </ul>
+
+</div>
 
 </body>
 </html>

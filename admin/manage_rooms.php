@@ -24,13 +24,17 @@ $result = mysqli_query($conn, "
 
 <head>
     <title>Manage Rooms</title>
+<link rel="stylesheet" href="css/manage_rooms.css">
+
 </head>
 <body>
 
-<h2>All Rooms (Admin)</h2>
-<a href="dashboard.php">⬅ Back</a>
+<div class="admin-container">
 
-<table border="1" cellpadding="10">
+<h2>All Rooms (Admin)</h2>
+<a href="dashboard.php" class="back-btn">⬅ Back</a>
+
+<table class="admin-table">
 <tr>
     <th>Title</th>
     <th>Owner</th>
@@ -59,6 +63,6 @@ $result = mysqli_query($conn, "
 <?php endwhile; ?>
 
 </table>
-
+</div>
 </body>
 </html>

@@ -1,10 +1,9 @@
 <?php
 session_start();
 include '../config/db.php'; // db connection
-
-$username = $_POST['username'] ?? '';
-$email = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
+$username = $_POST['rf_user_123'] ?? '';
+$email = $_POST['rf_mail_456'] ?? '';
+$password = $_POST['rf_pass_789'] ?? '';
 $is_lister = isset($_POST['is_lister']) ? 1 : 0;
 
 if (empty($username) || empty($email) || empty($password)) {
